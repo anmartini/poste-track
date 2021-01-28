@@ -22,6 +22,7 @@ class Update implements Arrayable, Jsonable
         $this->status = $data['statoLavorazione'];
         $this->place = $data['luogo'];
         $this->returned = $data['flagRitorno'];
+
         try {
             $this->office = empty($data['idUfficio']) ? null : new Office($data);
         } catch (Exception $e) {
@@ -73,7 +74,8 @@ class Update implements Arrayable, Jsonable
         foreach ($data as $update) {
             try {
                 $updates->push(new self($update));
-            } catch (Exception $e) {}
+            } catch (Exception $e) {
+            }
         }
 
         return $updates;

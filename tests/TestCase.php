@@ -2,9 +2,9 @@
 
 namespace Anmartini\PosteTrack\Tests;
 
+use Anmartini\PosteTrack\PosteTrackServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Anmartini\PosteTrack\PosteTrackServiceProvider;
 
 class TestCase extends Orchestra
 {

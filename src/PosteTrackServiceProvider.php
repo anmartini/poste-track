@@ -2,9 +2,9 @@
 
 namespace Anmartini\PosteTrack;
 
+use Anmartini\PosteTrack\Commands\PosteTrackCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Anmartini\PosteTrack\Commands\PosteTrackCommand;
 
 class PosteTrackServiceProvider extends PackageServiceProvider
 {

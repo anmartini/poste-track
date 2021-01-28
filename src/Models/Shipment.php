@@ -5,7 +5,6 @@ namespace Anmartini\PosteTrack\Models;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Collection;
 
 class Shipment implements Arrayable, Jsonable
 {

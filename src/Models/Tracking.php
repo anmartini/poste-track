@@ -42,6 +42,7 @@ class Tracking implements Arrayable, Jsonable
         $this->actions = $data['azioni'];
         $this->updates = Update::collect($data['listaMovimenti'] ?? null);
         $this->notified = $data['flagNotifica'] ?? null;
+
         try {
             $this->shipment = empty($data['spedizione']) ? null : new Shipment($data['spedizione']);
         } catch (Exception $e) {
