@@ -58,7 +58,7 @@ class Update implements Arrayable, Jsonable
     }
 
     /**
-     * Collect the updates
+     * Collect the updates.
      *
      * @param array|null $data
      * @return \Illuminate\Support\Collection

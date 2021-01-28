@@ -15,7 +15,7 @@ class PosteTrack
      * Track one or more shipment.
      *
      * @param string|array $codes
-     * @return null|\Illuminate\Support\Collection|\Anmartini\PosteTrack\Tracking
+     * @return null|\Illuminate\Support\Collection|\Anmartini\PosteTrack\Models\Tracking
      */
     public static function track($codes)
     {
@@ -34,7 +34,7 @@ class PosteTrack
      * Track a single shipment.
      *
      * @param string $code
-     * @return null|\Anmartini\PosteTrack\Tracking
+     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
     public static function trackSingle(string $code) : ?Tracking
     {
@@ -103,7 +103,7 @@ class PosteTrack
      * Track a shipment from DataMatrix
      *
      * @param string $dataMatrix
-     * @return null|\Anmartini\PosteTrack\Tracking
+     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
     public static function trackFromDataMatrix(string $dataMatrix) : ?Tracking
     {

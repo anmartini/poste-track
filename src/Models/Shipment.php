@@ -16,7 +16,7 @@ class Shipment implements Arrayable, Jsonable
 
     public function __construct(array $data)
     {
-        $this->date = Carbon::createFromFormat('Y-m-d H:i:s', $data['data'])->setTimezone('Europe/Rome');
+        $this->date = Carbon::createFromFormat('Y-m-d H:i:s', $data['data'], 'Europe/Rome');
         $this->status_label = $data['descrizioneStato'];
         $this->client_status_label = $data['descrizioneStatoCliente'];
         $this->status = $data['stato'];

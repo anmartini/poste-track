@@ -28,18 +28,18 @@ class Tracking implements Arrayable, Jsonable
     public Collection $updates;
     public ?bool $notified;
     public ?Shipment $shipment;
-    protected array $raw_data;
+    protected ?array $raw_data;
 
     public function __construct(?array $data)
     {
-        $this->code = $data['idTracciatura'];
-        $this->type = $data['tipoSpedizione'];
+        $this->code = $data['idTracciatura'] ?? '';
+        $this->type = $data['tipoSpedizione'] ?? '';
         $this->product = $data['tipoProdotto'] ?? null;
-        $this->result = $data['esitoRicerca'];
+        $this->result = $data['esitoRicerca'] ?? '';
         $this->status = $data['stato'] ?? null;
         $this->returned = $data['flagRitorno'] ?? null;
         $this->status_label = $data['sintesiStato'] ?? null;
-        $this->actions = $data['azioni'];
+        $this->actions = $data['azioni'] ?? '';
         $this->updates = Update::collect($data['listaMovimenti'] ?? null);
         $this->notified = $data['flagNotifica'] ?? null;
 
@@ -67,9 +67,7 @@ class Tracking implements Arrayable, Jsonable
             'returned' => $this->returned,
             'status_label' => $this->status_label,
             'actions' => $this->actions,
-            'updates' => $this->updates->map(function ($update) {
-                return $update->toArray();
-            })->all(),
+            'updates' => $this->updates->map(fn (Update $update) : array => $update->toArray())->all(),
             'notified' => $this->notified,
             'shipment' => optional($this->shipment)->toArray(),
         ];
@@ -86,12 +84,23 @@ class Tracking implements Arrayable, Jsonable
         return json_encode($this->toArray(), $options);
     }
 
-    public function getRawData() : array
+    /**
+     * Get the raw data from the request.
+     *
+     * @return array|null
+     */
+    public function getRawData() : ?array
     {
         return $this->raw_data;
     }
 
-    public static function collect(?array $data)
+    /**
+     * Collect the trackings.
+     *
+     * @param array|null $data
+     * @return \Illuminate\Support\Collection
+     */
+    public static function collect(?array $data) : Collection
     {
         if ($data === null) {
             return collect();
@@ -100,7 +109,9 @@ class Tracking implements Arrayable, Jsonable
         $trackings = collect();
 
         foreach ($data as $tracking) {
-            $trackings->push(new self($tracking));
+            try {
+                $trackings->push(new self($tracking));
+            } catch (Exception $e) {}
         }
 
         return $trackings;

@@ -191,7 +191,7 @@ class DataMatrix implements Arrayable, Jsonable
      */
     public function getClasse() : ?string
     {
-        return self::CLASSE[$this->classe] ?? null;
+        return self::CLASSE[intval($this->classe)] ?? null;
     }
 
     /**
@@ -217,11 +217,11 @@ class DataMatrix implements Arrayable, Jsonable
     /**
      * Track the shipment.
      *
-     * @return null|\Anmartini\PosteTrack\Tracking
+     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
     public function track() : ?Tracking
     {
-        return PosteTrack::track($this->getTrackingCode());
+        return PosteTrack::trackSingle($this->getTrackingCode());
     }
 
     /**
