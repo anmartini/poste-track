@@ -111,7 +111,8 @@ class Tracking implements Arrayable, Jsonable
         foreach ($data as $tracking) {
             try {
                 $trackings->push(new self($tracking));
-            } catch (Exception $e) {}
+            } catch (Exception $e) {
+            }
         }
 
         return $trackings;
