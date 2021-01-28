@@ -112,6 +112,12 @@ class MainTest extends TestCase
 
         $dataMatrix = new DataMatrix($data);
 
-        $this->assertInstanceOf(Tracking::class, $dataMatrix->track());
+        Http::fake(Http::response('{"idTracciatura":"2IUP0305509189","tipoSpedizione":"MT","esitoRicerca":"2","azioni":""}'));
+
+        $tracking = $dataMatrix->track();
+
+        $this->assertNotNull($tracking);
+        $this->assertInstanceOf(Tracking::class, $tracking);
+        $this->assertEquals($dataMatrix->getTrackingCode(), $tracking->code);
     }
 }
