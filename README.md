@@ -7,6 +7,10 @@
 
 Track Poste Italiane shipments
 
+## Disclaimer
+
+This project has no affiliation with Poste Italiane S.p.A. and it is solely intended for personal use.
+
 ## Installation
 
 You can install the package via composer:

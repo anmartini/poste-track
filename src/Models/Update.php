@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 class Update implements Arrayable, Jsonable
 {
     public Carbon $date;
-    public string $status;
+    public ?string $status;
     public string $place;
     public bool $returned;
     public ?Office $office;
@@ -19,7 +19,7 @@ class Update implements Arrayable, Jsonable
     public function __construct(array $data)
     {
         $this->date = Carbon::createFromTimestampMs($data['dataOra'])->setTimezone('Europe/Rome');
-        $this->status = $data['statoLavorazione'];
+        $this->status = $data['statoLavorazione'] ?? null;
         $this->place = $data['luogo'];
         $this->returned = $data['flagRitorno'];
 
