@@ -45,11 +45,12 @@ class PosteTrack
                 sleep(1);
             }
 
-            $response = Http::post('https://www.poste.it/online/dovequando/DQ-REST/ricercasemplice', [
-                'tipoRichiedente' => 'WEB',
-                'codiceSpedizione' => $code,
-                'periodoRicerca' => 1,
-            ]);
+            $response = Http::withoutVerifying()
+                ->post('https://www.poste.it/online/dovequando/DQ-REST/ricercasemplice', [
+                    'tipoRichiedente' => 'WEB',
+                    'codiceSpedizione' => $code,
+                    'periodoRicerca' => 1,
+                ]);
 
             $tries++;
         } while ($response->failed() && $tries <= config('poste-track.tries', 3));
@@ -80,10 +81,11 @@ class PosteTrack
                 sleep(1);
             }
 
-            $response = Http::post('https://www.poste.it/online/dovequando/DQ-REST/ricercamultipla', [
-                'tipoRichiedente' => 'WEB',
-                'listaCodici' => $codes,
-            ]);
+            $response = Http::withoutVerifying()
+                ->post('https://www.poste.it/online/dovequando/DQ-REST/ricercamultipla', [
+                    'tipoRichiedente' => 'WEB',
+                    'listaCodici' => $codes,
+                ]);
 
             $tries++;
         } while ($response->failed() && $tries <= config('poste-track.tries', 3));
