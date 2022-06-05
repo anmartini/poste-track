@@ -14,4 +14,7 @@ return [
     */
 
     'tries' => env('POSTE_TRACK_TRIES', 3),
+
+    'timeout' => env('POSTE_TRACK_TIMEOUT', 30),
+
 ];

@@ -46,6 +46,7 @@ class PosteTrack
             }
 
             $response = Http::withoutVerifying()
+                ->timeout(config('poste-track.timeout', 30))
                 ->post('https://www.poste.it/online/dovequando/DQ-REST/ricercasemplice', [
                     'tipoRichiedente' => 'WEB',
                     'codiceSpedizione' => $code,
@@ -82,6 +83,7 @@ class PosteTrack
             }
 
             $response = Http::withoutVerifying()
+                ->timeout(config('poste-track.timeout', 30))
                 ->post('https://www.poste.it/online/dovequando/DQ-REST/ricercamultipla', [
                     'tipoRichiedente' => 'WEB',
                     'listaCodici' => $codes,
