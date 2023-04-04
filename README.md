@@ -1,9 +1,8 @@
 # Track Poste Italiane shipments
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/anmartini/poste-track.svg?style=flat-square)](https://packagist.org/packages/anmartini/poste-track)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/anmartini/poste-track/Tests?label=tests)](https://github.com/anmartini/poste-track/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/anmartini/poste-track/run-tests.yml?branch=main&style=flat-square&label=tests)](https://github.com/anmartini/poste-track/actions?query=workflow%3ATests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/anmartini/poste-track.svg?style=flat-square)](https://packagist.org/packages/anmartini/poste-track)
-
 
 Track Poste Italiane shipments
 
