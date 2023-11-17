@@ -14,7 +14,7 @@ class PosteTrack
     /**
      * Track one or more shipment.
      *
-     * @param string|array $codes
+     * @param  string|array  $codes
      * @return null|\Illuminate\Support\Collection|\Anmartini\PosteTrack\Models\Tracking
      */
     public static function track($codes)
@@ -32,11 +32,8 @@ class PosteTrack
 
     /**
      * Track a single shipment.
-     *
-     * @param string $code
-     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
-    public static function trackSingle(string $code) : ?Tracking
+    public static function trackSingle(string $code): ?Tracking
     {
         $tries = 0;
 
@@ -69,11 +66,8 @@ class PosteTrack
 
     /**
      * Track multiple shipments.
-     *
-     * @param array $codes
-     * @return null|\Illuminate\Support\Collection
      */
-    public static function trackMultiple(array $codes) : ?Collection
+    public static function trackMultiple(array $codes): ?Collection
     {
         $tries = 0;
 
@@ -105,11 +99,8 @@ class PosteTrack
 
     /**
      * Track a shipment from DataMatrix
-     *
-     * @param string $dataMatrix
-     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
-    public static function trackFromDataMatrix(string $dataMatrix) : ?Tracking
+    public static function trackFromDataMatrix(string $dataMatrix): ?Tracking
     {
         return (new DataMatrix($dataMatrix))->track();
     }

@@ -8,12 +8,19 @@ use Illuminate\Contracts\Support\Jsonable;
 class Office implements Arrayable, Jsonable
 {
     public string $id;
+
     public string $name;
+
     public string $street_address;
+
     public string $zip;
+
     public string $city;
+
     public string $country;
+
     public array $opening_times;
+
     public string $opening_times_label;
 
     public function __construct(array $data)

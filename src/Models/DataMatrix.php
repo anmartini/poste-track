@@ -11,9 +11,13 @@ use InvalidArgumentException;
 class DataMatrix implements Arrayable, Jsonable
 {
     const GAMMA_BULK_MAIL = 'B';
+
     const GAMMA_EDITORIA = 'E';
+
     const GAMMA_POSTA_TARGET = 'T';
+
     const GAMMA_POSTA_TIME = 'V';
+
     const GAMMA = [
         self::GAMMA_BULK_MAIL => 'Bulk Mail',
         self::GAMMA_EDITORIA => 'Editoria',
@@ -22,36 +26,62 @@ class DataMatrix implements Arrayable, Jsonable
     ];
 
     const CLASSE_PRIORITARIA = '2';
+
     const CLASSE_ORDINARIA = '1';
+
     const CLASSE = [
         self::CLASSE_PRIORITARIA => 'Prioritaria',
         self::CLASSE_ORDINARIA => 'Ordinaria',
     ];
 
     const TIPOLOGIA_PRODOTTO_PERIODICO = 'Y';
+
     const TIPOLOGIA_PRODOTTO_PIEGHI_DI_LIBRI = 'X';
+
     const TIPOLOGIA_PRODOTTO_PROMOZIONE_ABBONAMENTO = 'S';
+
     const TIPOLOGIA_PRODOTTO_BILLING_MAIL = 'Y';
+
     const TIPOLOGIA_PRODOTTO_POSTA1_PRO = 'X';
+
     const TIPOLOGIA_PRODOTTO_POSTA_MASSIVA = 'W';
+
     const TIPOLOGIA_PRODOTTO_GOLD = 'Q';
+
     const TIPOLOGIA_PRODOTTO_BASIC = 'S';
+
     const TIPOLOGIA_PRODOTTO_CARD = 'U';
+
     const TIPOLOGIA_PRODOTTO_CREATIVE = 'W';
+
     const TIPOLOGIA_PRODOTTO_CATALOG = 'V';
+
     const TIPOLOGIA_PRODOTTO_MAGAZINE = 'Z';
+
     const TIPOLOGIA_PRODOTTO_POSTA_TIME_BASE = 'Q';
+
     const TIPOLOGIA_PRODOTTO_POSTA_TIME_ORA = 'S';
+
     const TIPOLOGIA_PRODOTTO_STAMPE_PERIODICHE_IN_REGIME_LIBERO = 'U';
+
     const TIPOLOGIA_PRODOTTO_PROMOZIONI_NO_PROFIT = 'Q';
+
     const TIPOLOGIA_PRODOTTO_PUBBLICAZIONI_INFORMATIVE_NO_PROFIT = 'W';
+
     const TIPOLOGIA_PRODOTTO_PREMIUM_PRESS = 'V';
+
     const TIPOLOGIA_PRODOTTO_CONSEGNA_MULTICOPIE = 'Z';
+
     const TIPOLOGIA_PRODOTTO_SVILUPPO_CUSTOMER_BASE = 'X';
+
     const TIPOLOGIA_PRODOTTO_INVITO_ALLA_PROVA = 'Y';
+
     const TIPOLOGIA_PRODOTTO_POSTA_CONTEST1 = 'Q';
+
     const TIPOLOGIA_PRODOTTO_POSTA_CONTEST4 = 'S';
+
     const TIPOLOGIA_PRODOTTO_POSTA_TIME_OPERATORI = 'T';
+
     const TIPOLOGIA_PRODOTTO = [
         self::GAMMA_BULK_MAIL => [
             self::TIPOLOGIA_PRODOTTO_BILLING_MAIL => 'Billing Mail',
@@ -86,6 +116,7 @@ class DataMatrix implements Arrayable, Jsonable
             self::TIPOLOGIA_PRODOTTO_POSTA_TIME_OPERATORI => 'Operatori',
         ],
     ];
+
     const CLASSE_TIPOLOGIA_PRODOTTO = [
         self::GAMMA_BULK_MAIL => [
             self::TIPOLOGIA_PRODOTTO_BILLING_MAIL => self::CLASSE_ORDINARIA,
@@ -122,21 +153,37 @@ class DataMatrix implements Arrayable, Jsonable
     ];
 
     public string $identificativo;
+
     public string $descrittivo_gamma;
+
     public string $id_cliente_sap;
+
     public string $identificativo_cliente_mittente;
+
     public string $classe;
+
     public string $tipologia_prodotto;
+
     public string $cap_destinatario;
+
     public string $codice_tecnico_destinatario;
+
     public string $cap_mittente;
+
     public string $codice_tecnico_mittente;
+
     public string $codice_id_prenotazione;
+
     public string $identificativo_stampatore;
+
     public string $identificativo_oggetto;
+
     public string $causale;
+
     public string $codice_omologazione;
+
     public string $disponibile_per_il_cliente;
+
     public string $servizi_accessori;
 
     public function __construct(string $data)
@@ -166,60 +213,48 @@ class DataMatrix implements Arrayable, Jsonable
 
     /**
      * Get the printed tracking code
-     *
-     * @return string
      */
-    public function getTrackingCode() : string
+    public function getTrackingCode(): string
     {
         return "{$this->classe}{$this->codice_id_prenotazione}{$this->identificativo_stampatore}{$this->identificativo_oggetto}";
     }
 
     /**
      * Get the gamma label.
-     *
-     * @return string|null
      */
-    public function getDescrittivoGamma() : ?string
+    public function getDescrittivoGamma(): ?string
     {
         return self::GAMMA[$this->descrittivo_gamma] ?? null;
     }
 
     /**
      * Get the classe label.
-     *
-     * @return string|null
      */
-    public function getClasse() : ?string
+    public function getClasse(): ?string
     {
         return self::CLASSE[intval($this->classe)] ?? null;
     }
 
     /**
      * Get the tipologia prodotto label.
-     *
-     * @return string|null
      */
-    public function getTipologiaProdotto() : ?string
+    public function getTipologiaProdotto(): ?string
     {
         return self::TIPOLOGIA_PRODOTTO[$this->descrittivo_gamma][$this->tipologia_prodotto] ?? null;
     }
 
     /**
      * Check if the shipment is prioritary.
-     *
-     * @return bool
      */
-    public function isPrioritario() : bool
+    public function isPrioritario(): bool
     {
         return $this->classe === self::CLASSE_PRIORITARIA;
     }
 
     /**
      * Track the shipment.
-     *
-     * @return null|\Anmartini\PosteTrack\Models\Tracking
      */
-    public function track() : ?Tracking
+    public function track(): ?Tracking
     {
         return PosteTrack::trackSingle($this->getTrackingCode());
     }

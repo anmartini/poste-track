@@ -9,9 +9,13 @@ use Illuminate\Contracts\Support\Jsonable;
 class Shipment implements Arrayable, Jsonable
 {
     public Carbon $date;
+
     public string $status_label;
+
     public string $client_status_label;
+
     public string $status;
+
     public array $stickers;
 
     public function __construct(array $data)

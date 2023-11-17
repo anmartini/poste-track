@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 class Tracking implements Arrayable, Jsonable
 {
     const STATUS_PROCESSING = '2';
+
     const STATUS_DELIVERED = '5';
 
     const STATUSES = [
@@ -18,16 +19,27 @@ class Tracking implements Arrayable, Jsonable
     ];
 
     public string $code;
+
     public string $type;
+
     public ?string $product;
+
     public string $result;
+
     public ?string $status;
+
     public ?bool $returned;
+
     public ?string $status_label;
+
     public string $actions;
+
     public Collection $updates;
+
     public ?bool $notified;
+
     public ?Shipment $shipment;
+
     protected ?array $raw_data;
 
     public function __construct(?array $data)
@@ -67,7 +79,7 @@ class Tracking implements Arrayable, Jsonable
             'returned' => $this->returned,
             'status_label' => $this->status_label,
             'actions' => $this->actions,
-            'updates' => $this->updates->map(fn (Update $update) : array => $update->toArray())->all(),
+            'updates' => $this->updates->map(fn (Update $update): array => $update->toArray())->all(),
             'notified' => $this->notified,
             'shipment' => optional($this->shipment)->toArray(),
         ];
@@ -86,21 +98,16 @@ class Tracking implements Arrayable, Jsonable
 
     /**
      * Get the raw data from the request.
-     *
-     * @return array|null
      */
-    public function getRawData() : ?array
+    public function getRawData(): ?array
     {
         return $this->raw_data;
     }
 
     /**
      * Collect the trackings.
-     *
-     * @param array|null $data
-     * @return \Illuminate\Support\Collection
      */
-    public static function collect(?array $data) : Collection
+    public static function collect(?array $data): Collection
     {
         if ($data === null) {
             return collect();

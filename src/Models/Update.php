@@ -11,9 +11,13 @@ use Illuminate\Support\Collection;
 class Update implements Arrayable, Jsonable
 {
     public Carbon $date;
+
     public ?string $status;
+
     public string $place;
+
     public bool $returned;
+
     public ?Office $office;
 
     public function __construct(array $data)
@@ -59,11 +63,8 @@ class Update implements Arrayable, Jsonable
 
     /**
      * Collect the updates.
-     *
-     * @param array|null $data
-     * @return \Illuminate\Support\Collection
      */
-    public static function collect(?array $data) : Collection
+    public static function collect(?array $data): Collection
     {
         if ($data === null) {
             return collect();
