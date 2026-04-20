@@ -5,7 +5,7 @@ namespace Anmartini\PosteTrack;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Anmartini\PosteTrack\PosteTrack
+ * @see PosteTrack
  */
 class PosteTrackFacade extends Facade
 {

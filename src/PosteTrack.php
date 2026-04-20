@@ -15,7 +15,7 @@ class PosteTrack
      * Track one or more shipment.
      *
      * @param  string|array  $codes
-     * @return null|\Illuminate\Support\Collection|\Anmartini\PosteTrack\Models\Tracking
+     * @return null|Collection|Tracking
      */
     public static function track($codes)
     {

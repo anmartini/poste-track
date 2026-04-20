@@ -3,7 +3,6 @@
 namespace Anmartini\PosteTrack\Tests;
 
 use Anmartini\PosteTrack\PosteTrackServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
