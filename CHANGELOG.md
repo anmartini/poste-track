@@ -2,6 +2,10 @@
 
 All notable changes to `poste-track` will be documented in this file.
 
+## v3.0.0 - 2026-04-20
+
+Aggiornate le dipendenze e i sistemi di CI.
+
 ## v2.0.0 - 2023-11-17
 
 Aggiornate le dipendenze e i sistemi di CI.
